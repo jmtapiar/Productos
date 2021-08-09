@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UserController } from "../controller/UserController";
+import { checkRole } from "../middleware/role";
 
 const router = Router();
 
@@ -9,13 +10,13 @@ const router = Router();
 router.get('/', UserController.getAll);
 
 //TODO: Get By Id
-router.get('/:id',UserController.getById);
+router.get('/:id',checkRole(['admin']),UserController.getById);
 
 //TODO: Crear nuevo usuario
 router.post('/',UserController.newUser);
 
 //TODO: Editar Usuario
-router.patch('/:id',UserController.editUser);
+router.patch('/:id',checkRole(['Mishi']),UserController.editUser);
 
 //TODO: Eliminar Usuario
 router.delete('/:id',UserController.deleteUser);

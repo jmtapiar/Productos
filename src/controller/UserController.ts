@@ -46,7 +46,7 @@ export class UserController {
                 data: user
             })
         } catch (error) {
-            res.status(404).json({
+            res.status(401).json({
                 message: 'No existe usuario!'
             })
         }
