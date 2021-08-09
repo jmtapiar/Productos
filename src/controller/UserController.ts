@@ -138,6 +138,8 @@ export class UserController {
 
         try {
             user = await userRepository.findOneOrFail(id);
+            user.estado = false;
+            await userRepository.save(user);
         } catch (error) {
             return res.status(404).json({
                 message: 'Error',
@@ -146,7 +148,7 @@ export class UserController {
         }
 
         //Eliminar Usuario
-        userRepository.delete(id);
+       
         res.status(201).json({
             message: 'Eliminado'
         })
