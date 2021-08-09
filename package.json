@@ -23,7 +23,6 @@
       "morgan": "^1.10.0",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
-      "type": "module",
       "typeorm": "0.2.36"
    },
    "scripts": {

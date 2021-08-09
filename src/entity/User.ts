@@ -33,6 +33,9 @@ export class User {
     @OneToMany(()=>Movimiento, movimiento => movimiento.id)
     movimiento:Movimiento[];
 
+    @Column({default:1})
+    estado:boolean;
+
     hashPassword(): void {
         const salt = bcrypt.genSaltSync(10);
         this.password = bcrypt.hashSync(this.password, salt);
