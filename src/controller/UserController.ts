@@ -10,7 +10,7 @@ export class UserController {
     static getAll = async (req: Request, res: Response) => {
         try {
             const userRepository = getRepository(User);
-            const users = await userRepository.findAndCount();
+            const users = await userRepository.findAndCount({where:{estado:1}});
 
             if (users.length > 0) {
                 res.status(200).json({

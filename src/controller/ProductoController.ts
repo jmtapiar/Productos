@@ -10,7 +10,7 @@ export class ProductosController {
         try {
             const prodRepository = getRepository(Producto);
 
-            const producto = await prodRepository.findAndCount();
+            const producto = await prodRepository.findAndCount({where:{estado:1}});
 
             if(producto.length>0){
                 res.send({
