@@ -33,7 +33,7 @@ export class Producto{
     @Column("double")
     valorVenta:number;
 
-    @Column()
+    @Column({ default: 1 })
     estado:boolean;
 
 

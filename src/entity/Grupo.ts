@@ -24,7 +24,7 @@ export class Grupo {
     @UpdateDateColumn()
     updatedDate:Date;
 
-    @Column()
+    @Column( {default:1})
     estado:boolean;
 
     

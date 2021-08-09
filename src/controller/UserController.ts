@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../entity/User";
 import { validate } from "class-validator";
 
+
 export class UserController {
 
     // Nuevos Metodos
@@ -71,7 +72,7 @@ export class UserController {
         //TODO: Hash para el pass
         const userRepository = getRepository(User);
         try {
-
+            user.hashPassword();
             await userRepository.save(user);
 
         } catch (error) {
@@ -152,7 +153,7 @@ export class UserController {
 
 
     }
-
+    
 }
 
 export default UserController;
