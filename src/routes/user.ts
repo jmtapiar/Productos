@@ -7,19 +7,19 @@ const router = Router();
 //Rutas para el Crud
 
 //TODO: Get all users
-router.get('/', UserController.getAll);
+router.get('/',checkRole(['admin']), UserController.getAll);
 
 //TODO: Get By Id
-router.get('/:id',checkRole(['admin']),UserController.getById);
+router.get('/:id',checkRole(['admin','usuario']),UserController.getById);
 
 //TODO: Crear nuevo usuario
-router.post('/',UserController.newUser);
+router.post('/',checkRole(['admin']),UserController.newUser);
 
 //TODO: Editar Usuario
-router.patch('/:id',checkRole(['Mishi']),UserController.editUser);
+router.patch('/:id',checkRole(['admin']),UserController.editUser);
 
 //TODO: Eliminar Usuario
-router.delete('/:id',UserController.deleteUser);
+router.delete('/:id',checkRole(['admin']),UserController.deleteUser);
 
 
 export default router;

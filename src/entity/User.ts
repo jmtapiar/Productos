@@ -18,7 +18,7 @@ export class User {
     @MinLength(6)
     password: string;
 
-    @Column()
+    @Column({default:'usuario'})
     @IsNotEmpty()
     role: string;
 
