@@ -130,7 +130,7 @@ export class ProductosController {
         }
 
         //Eliminar Producto
-        prodRepository.delete(id);
+        prodRepository.update(id,{estado:false});
         res.send({
             message: 'Eliminado'
         })
