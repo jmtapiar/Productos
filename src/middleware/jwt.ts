@@ -11,7 +11,6 @@ export const checkJwt = ( req: Request, res:Response, next: NextFunction) =>{
         })
     }
     let JwtLoad;
-
     try {
         JwtLoad = <any> jwt.verify(token, config.jwtSecret);
         res.locals.JwtLoad = JwtLoad;
@@ -20,10 +19,8 @@ export const checkJwt = ( req: Request, res:Response, next: NextFunction) =>{
             message:'No autorizado! '
         })
     }
-
-    const {userId, username} = JwtLoad;
-
-    const newToken = jwt.sign({userId,username}, config.jwtSecret,{expiresIn:'1h'});
+    const {userId, username, rol} = JwtLoad;
+    const newToken = jwt.sign({userId,username,rol}, config.jwtSecret,{expiresIn:'1h'});
     res.setHeader('token',newToken);
 
     next();
