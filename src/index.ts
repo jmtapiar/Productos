@@ -11,7 +11,7 @@ import * as morgan from "morgan";
 const PORT = process.env.PORT || 3000;
 
 var corsOptions = {
-  origin: 'http://example.com'
+  origin: 'http://localhost:4200'
 }
 
 morgan.token('id', function getId(req) {
@@ -21,8 +21,6 @@ morgan.token('id', function getId(req) {
 
 createConnection().then(async () => {
 
-
-  
   // create express app
   const app = express();
   app.use(morgan('common'))

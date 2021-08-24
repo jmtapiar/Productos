@@ -11,7 +11,7 @@ class AuthController {
 
         if (!(username && password)) {
             return res.status(400).json({
-                menssage: 'Username & Password necesarios!'
+                message: 'Username & Password necesarios!'
             })
         }
         const userRepository = getRepository(User);
@@ -21,7 +21,7 @@ class AuthController {
             user = await userRepository.findOneOrFail({ where: { username } })
         } catch (error) {
             return res.status(400).json({
-                menssage: ' Username Or Password incorrectos! ',
+                message: ' Username Or Password incorrectos! ',
                 data: error
             })
 
@@ -36,7 +36,8 @@ class AuthController {
         const usuario = jwt.sign({userId:user.id, username:user.username,role:user.role},config.jwtSecret,{ expiresIn:'1h' })
         res.status(200).json({
             message: 'Correcto',
-            data: usuario
+            data: usuario,
+            userid:user.id
         });
 
     }
