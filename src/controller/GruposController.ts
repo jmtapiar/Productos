@@ -8,7 +8,7 @@ export class GrupoController {
     static getall = async (req: Request, res: Response) => {
         try {
             const grupoRepository = getRepository(Grupo);
-            const grupo = await grupoRepository.findAndCount({ where: { estado: 1 } });
+            const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
             if (grupo.length > 0) {
                 res.send({
                     message: 'Correcto',
@@ -30,7 +30,7 @@ export class GrupoController {
         const { id } = req.params;
         const grupoRepository = getRepository(Grupo);
         try {
-            const grupo = grupoRepository.findOneOrFail({ where: { estado: 1, id } });
+            const grupo = grupoRepository.findOneOrFail({ where: { estado: true, id } });
             res.send({
                 message: 'Correcto',
                 data: grupo

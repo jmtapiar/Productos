@@ -28,7 +28,7 @@ export class Local{
     @UpdateDateColumn()
     updatedDate:Date;
 
-    @Column()
+    @Column({default:true})
     estado:boolean;
 
 }
