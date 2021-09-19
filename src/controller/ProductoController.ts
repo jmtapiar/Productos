@@ -1,6 +1,7 @@
-import { getRepository } from "typeorm";
+import { getRepository, createQueryBuilder } from "typeorm";
 import { Request, Response } from "express";
 import { Producto } from "../entity/Producto";
+import { Grupo } from "../entity/Grupo";
 import { validate } from "class-validator";
 
 export class ProductosController {
@@ -10,7 +11,10 @@ export class ProductosController {
         try {
             const prodRepository = getRepository(Producto);
 
-            const producto = await prodRepository.findAndCount({where:{estado:1}});
+            //const producto = await prodRepository.findAndCount({where:{estado:1}});
+            const producto = await createQueryBuilder(Producto, "producto")
+            .leftJoinAndSelect("producto.grupo","Grupo")
+            .getMany()
 
             if(producto.length>0){
                 res.send({
@@ -75,6 +79,8 @@ export class ProductosController {
     static editProd = async (req:Request, res:Response)=>{
         let p;
         const {id} = req.params;
+        console.log('id: '+ id);
+        
         const {grupo, nombre, descripcion,valorCompra, valorVenta} = req.body;
 
         const prodRepository = getRepository(Producto);
@@ -82,6 +88,8 @@ export class ProductosController {
         try {
             p = await prodRepository.findOneOrFail(id);
         } catch (error) {
+            console.log(error);
+            
             return res.status(404).json({
                 message:'Error no existe Producto!',
                 data:error
@@ -90,7 +98,7 @@ export class ProductosController {
         p.grupo = grupo;
         p.nombre= nombre;
         p.descripcion= descripcion;
-        p.valorCompra = valorCompra;
+        p.valorCompra =  valorCompra;
         p.valorVenta = valorVenta;
 
         const errors =await validate(p);
@@ -103,8 +111,10 @@ export class ProductosController {
 
         //try to save
         try {
-            await prodRepository.update(id,p)
+            await prodRepository.save(p)
         } catch (error) {
+            console.log(error);
+            
             return res.status(404).json({
                 message:'Error',
                 data:error

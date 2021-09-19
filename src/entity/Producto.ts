@@ -1,3 +1,4 @@
+import { IsNotEmpty } from "class-validator";
 import { Entity, PrimaryGeneratedColumn, Unique,Column,CreateDateColumn,UpdateDateColumn, Double, OneToMany, ManyToOne } from "typeorm";
 import { Grupo } from "./Grupo";
 
@@ -10,6 +11,7 @@ export class Producto{
     @PrimaryGeneratedColumn()
     id: number;
 
+    @IsNotEmpty()
     @ManyToOne(()=>Grupo , grupo => grupo.id)
     grupo:Grupo;
     
