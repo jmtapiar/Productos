@@ -15,7 +15,7 @@ router.get('/:id',ProductosController.getById);
 router.post('/',ProductosController.newProd);
 
 //TODO: Editar Usuario
-router.patch('/:id',ProductosController.editProd);
+router.put('/:id',ProductosController.editProd);
 
 //TODO: Eliminar Usuario
 router.delete('/:id',ProductosController.delPro);
