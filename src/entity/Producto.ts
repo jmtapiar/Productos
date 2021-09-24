@@ -26,6 +26,9 @@ export class Producto{
     createdDate : Date;
 
     @Column()
+    grupoId: number;
+
+    @Column()
     @UpdateDateColumn()
     updatedDate:Date;
 
