@@ -32,7 +32,7 @@ export class InventarioController {
         try {
             const inventario = await invRepository.findOneOrFail({ where: { estado: true,Codigo:id } });
             res.send({
-                message: 'Correctisimo',
+                message: 'Correcto',
                 data: inventario
             })
         } catch (error) {
