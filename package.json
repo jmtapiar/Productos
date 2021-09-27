@@ -27,7 +27,7 @@
    },
    "scripts": {
       "tsc": "tsc",
-      "dev": "set debug=* && ts-node-dev --respawn --transpile-only ./src/index.ts",
+      "dev": "ts-node-dev --debug --respawn --transpile-only ./src/index.ts",
       "start": "run-p -l tsc dev"
    }
 }

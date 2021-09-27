@@ -30,9 +30,9 @@ export class InventarioController {
         const { id } = req.params;
         const invRepository = getRepository(Inventario);
         try {
-            const inventario = invRepository.findOneOrFail({ where: { estado: true, id } });
+            const inventario = await invRepository.findOneOrFail({ where: { estado: true,Codigo:id } });
             res.send({
-                message: 'Correcto',
+                message: 'Correctisimo',
                 data: inventario
             })
         } catch (error) {

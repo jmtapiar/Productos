@@ -14,7 +14,7 @@ router.use('/auth',auth);
 router.use('/producto',checkJwt,producto);
 router.use('/grupo',checkJwt,grupo);
 router.use('/local',checkJwt,local);
-router.use('/inventario',inv);
+router.use('/inv',inv);
 
 
 export default router;
