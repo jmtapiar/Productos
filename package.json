@@ -26,8 +26,8 @@
       "typeorm": "0.2.36"
    },
    "scripts": {
-      "tsc": "tsc",
+      "tsc": "tsc && node dist/index.js",
       "dev": "ts-node-dev --debug --respawn --transpile-only ./src/index.ts",
-      "start": "run-p -l tsc dev"
+      "start": "tsc && node dist/index.js"
    }
 }
