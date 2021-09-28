@@ -30,5 +30,9 @@
       "postinstall": "tsc",
       "watch-node": "nodemon dist/index.js",
       "watch-ts": "tsc -w", 
-      "deploy": "git add . && git commit -m Heroku && git push productos productos"}
+      "deploy": "git add . && git commit -m Heroku && git push productos productos"},
+      "include": [
+         "build/compiled/src/**",
+         "src/**"
+       ]
 }
