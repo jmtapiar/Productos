@@ -19,7 +19,17 @@ morgan.token('id', function getId(req) {
 })
 
 
-createConnection().then(async () => {
+createConnection({"type": "mysql",
+"host": "us-cdbr-east-04.cleardb.com",
+"port": 3306,
+"username": "bb16479b5469ce",
+"password": "2ff575c5",
+"database": "heroku_7ee426e82883303",
+"synchronize": false,
+"logging": false,
+"entities": [
+   "entity/**/*.ts"
+]}).then(async () => {
 
   // create express app
   const app = express();

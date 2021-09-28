@@ -26,9 +26,5 @@
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.36"
    },
-   "scripts": {
-      "tsc": "tsc && ts-node ./src/index.ts",
-      "dev": "ts-node-dev --debug --respawn --transpile-only ./src/index.ts",
-      "start": "tsc && ts-node ./src/index.ts"
-   }
+   "scripts": { "build": "tsc", "heroku-postbuild": "npm run build", "start": "node build/app.js" }
 }
