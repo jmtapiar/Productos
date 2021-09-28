@@ -3,7 +3,8 @@ import { MinLength,IsNotEmpty, minLength } from "class-validator";
 import { Movimiento } from "./Movimiento";
 import * as bcrypt from "bcrypt";
 
-@Entity()
+
+@Entity("User")
 @Unique(['username'])
 export class User {
 
