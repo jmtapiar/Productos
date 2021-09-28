@@ -8,7 +8,7 @@
       "target": "es5",
       "module": "commonjs",
       "moduleResolution": "node",
-      "outDir": "./dist",
+      "outDir": "./app",
       "rootDir":"./src",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
