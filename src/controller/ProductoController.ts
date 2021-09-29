@@ -81,7 +81,7 @@ export class ProductosController {
         const {id} = req.params;
         console.log('id: '+ id);
         
-        const {grupo, nombre, descripcion,valorCompra, valorVenta} = req.body;
+        const {grupoId, nombre, descripcion,valorCompra, valorVenta} = req.body;
 
         const prodRepository = getRepository(Producto);
 
@@ -95,7 +95,7 @@ export class ProductosController {
                 data:error
             })
         }
-        p.grupo = grupo;
+        p.grupoId = grupoId;
         p.nombre= nombre;
         p.descripcion= descripcion;
         p.valorCompra =  valorCompra;
