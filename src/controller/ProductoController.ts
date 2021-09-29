@@ -114,14 +114,12 @@ export class ProductosController {
             await prodRepository.save(p)
         } catch (error) {
             console.log(error);
-            
             return res.status(404).json({
                 message:'Error',
                 data:error
             })
         }
-        res.send({
-            message:'Producto Modificado'})
+        res.send({message:'Producto Modificado'})
     }
 
     static delPro = async (req:Request ,  res :Response)=>{

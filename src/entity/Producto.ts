@@ -11,7 +11,7 @@ export class Producto{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @IsNotEmpty()
+    
     @ManyToOne(()=>Grupo , grupo => grupo.id)
     grupo:Grupo;
     
@@ -26,6 +26,7 @@ export class Producto{
     createdDate : Date;
 
     @Column()
+    @IsNotEmpty()
     grupoId: number;
 
     @Column()

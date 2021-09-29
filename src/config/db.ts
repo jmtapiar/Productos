@@ -7,7 +7,8 @@ const DatabaseConfig = () => ({
     username: "bb16479b5469ce",
     password: "2ff575c5",
     entities: [
-        "dist/entity/*{.ts,.js}"
+        "dist/entity/*{.ts,.js}",
+        "src/entity/*{.ts,.js}"
     ],
     synchronize: false,
     logging:true,
