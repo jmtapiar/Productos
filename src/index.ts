@@ -11,7 +11,7 @@ import * as morgan from "morgan";
 const PORT = process.env.PORT || 3000;
 const typeormConfig = DatabaseConfig() as ConnectionOptions;
 var corsOptions = {
-  origin: ['https://moinventariofront.herokuapp.com/','http://localhost:4200']
+  origin: ['https://moinventariofront.herokuapp.com','http://localhost:4200']
 }
 
 morgan.token('id', function getId(req) {
