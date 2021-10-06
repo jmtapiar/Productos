@@ -14,6 +14,7 @@ export class ProductosController {
             //const producto = await prodRepository.findAndCount({where:{estado:1}});
             const producto = await createQueryBuilder(Producto, "producto")
             .leftJoinAndSelect("producto.grupo","Grupo")
+            .where("producto.estado = :estado", { estado: "1" })
             .getMany()
 
             if(producto.length>0){
