@@ -18,7 +18,7 @@ router.post('/',ProductosController.newProd);
 router.put('/:id',ProductosController.editProd);
 
 //TODO: Eliminar Usuario
-router.delete('/:id',ProductosController.delPro);
+router.put('/del/:id',ProductosController.delPro);
 
 
 export default router;

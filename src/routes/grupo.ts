@@ -10,7 +10,7 @@ router.get('/:id',checkRole(['usuario']),GrupoController.getById);
 
 router.post('',checkRole(['usuario']),GrupoController.newGrupo);
 
-router.patch('/:id',checkRole(['usuario']),GrupoController.editGrupo);
+router.put('/:id',checkRole(['usuario']),GrupoController.editGrupo);
 
 router.delete('/:id',checkRole(['empresa']),GrupoController.delGrupo);
 
