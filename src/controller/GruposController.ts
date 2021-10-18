@@ -8,8 +8,8 @@ export class GrupoController {
     static getall = async (req: Request, res: Response) => {
         try {
             const grupoRepository = getRepository(Grupo);
-            const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
-            const producto = await createQueryBuilder(Grupo, "grupo")
+            //const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
+            const grupo = await createQueryBuilder(Grupo, "grupo")
             .where("grupo.estado = :estado", { estado: "1" })
             .getMany()
             if (grupo.length > 0) {
