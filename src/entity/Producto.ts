@@ -4,7 +4,7 @@ import { Grupo } from "./Grupo";
 
 
 @Entity()
-@Unique(['nombre'])
+@Unique(['nombre','estado'])
 
 export class Producto{
 

@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { Grupo } from "../entity/Grupo";
 import { validate } from "class-validator";
@@ -9,6 +9,10 @@ export class GrupoController {
         try {
             const grupoRepository = getRepository(Grupo);
             const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
+            const producto = await createQueryBuilder(Grupo, "grupo")
+            .leftJoinAndSelect("grupo.grupo","Grupo")
+            .where("grupo.estado = :estado", { estado: "1" })
+            .getMany()
             if (grupo.length > 0) {
                 res.send({
                     message: 'Correcto',

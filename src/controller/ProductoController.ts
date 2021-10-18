@@ -10,7 +10,6 @@ export class ProductosController {
     static getall = async (req:Request, res: Response)=>{
         try {
             const prodRepository = getRepository(Producto);
-
             //const producto = await prodRepository.findAndCount({where:{estado:1}});
             const producto = await createQueryBuilder(Producto, "producto")
             .leftJoinAndSelect("producto.grupo","Grupo")
