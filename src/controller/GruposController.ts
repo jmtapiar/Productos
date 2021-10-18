@@ -10,7 +10,6 @@ export class GrupoController {
             const grupoRepository = getRepository(Grupo);
             const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
             const producto = await createQueryBuilder(Grupo, "grupo")
-            .leftJoinAndSelect("grupo.grupo","Grupo")
             .where("grupo.estado = :estado", { estado: "1" })
             .getMany()
             if (grupo.length > 0) {
