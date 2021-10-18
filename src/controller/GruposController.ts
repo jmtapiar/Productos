@@ -8,10 +8,7 @@ export class GrupoController {
     static getall = async (req: Request, res: Response) => {
         try {
             const grupoRepository = getRepository(Grupo);
-            //const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
-            const grupo = await createQueryBuilder(Grupo, "grupo")
-            .where("grupo.estado = :estado", { estado: "1" })
-            .getMany()
+            const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
             if (grupo.length > 0) {
                 res.send({
                     message: 'Correcto',
