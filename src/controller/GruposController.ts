@@ -8,7 +8,7 @@ export class GrupoController {
     static getall = async (req: Request, res: Response) => {
         try {
             const grupoRepository = getRepository(Grupo);
-            const grupo = await grupoRepository.findAndCount({ where: { estado: true } });
+            const grupo = await grupoRepository.findAndCount({ where: { estado: "1" } });
             if (grupo.length > 0) {
                 res.send({
                     message: 'Correcto',
