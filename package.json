@@ -10,31 +10,32 @@
       "@types/node": "^8.10.66",
       "npm-run-all": "^4.1.5",
       "ts-node-dev": "^1.1.8"
-      
    },
    "dependencies": {
       "bcrypt": "^5.0.1",
-      "typescript": "^4.3.5",
-      "ts-node": "3.3.0",
       "class-validator": "^0.13.1",
       "cors": "^2.8.5",
+      "crypto-js": "^4.1.1",
       "express": "^4.15.4",
       "helmet": "^4.6.0",
       "jsonwebtoken": "^8.5.1",
       "morgan": "^1.10.0",
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.36"
+      "ts-node": "3.3.0",
+      "typeorm": "0.2.36",
+      "typescript": "^4.3.5"
    },
-   "scripts": { 
+   "scripts": {
       "start": "ts-node dist/index.js",
       "dev": "ts-node-dev --debug --respawn --transpile-only ./src/index.ts",
       "postinstall": "tsc",
       "watch-node": "nodemon dist/index.js",
-      "watch-ts": "tsc -w", 
-      "deploy": "git add * && git commit -m Heroku && git push productos productos"},
-      "include": [
-         "build/compiled/src/**",
-         "src/**"
-       ]
+      "watch-ts": "tsc -w",
+      "deploy": "git add * && git commit -m Heroku && git push productos productos"
+   },
+   "include": [
+      "build/compiled/src/**",
+      "src/**"
+   ]
 }

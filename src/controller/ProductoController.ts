@@ -79,7 +79,7 @@ export class ProductosController {
     static editProd = async (req:Request, res:Response)=>{
         let p;
         const {id} = req.params;
-        console.log('id: '+ id);
+        //console.log('id: '+ id);
         
         const {grupoId, nombre, descripcion,valorCompra, valorVenta} = req.body;
 
