@@ -1,5 +1,4 @@
 import { Column,PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn,Entity, ManyToOne, ColumnTypeUndefinedError } from "typeorm";
-import { Producto } from "./Producto";
 import { User } from "./User";
 
 @Entity()
@@ -11,16 +10,9 @@ export class Movimiento{
     
     @ManyToOne(()=>User , user => user.id)
     user:User;
-    
-    @ManyToOne(()=>Producto, producto => producto.id)
-    producto:Producto;
 
     @Column()
-    @CreateDateColumn()
-    createdDate:Date;
-
-    @Column()
-    cantidad:number;
+    idempresa:number;
 
     @Column()
     localIn:number;
@@ -28,4 +20,10 @@ export class Movimiento{
     @Column()
     localOut:number;
 
+    @Column()
+    @CreateDateColumn()
+    createdDate:Date;
+
+    @Column({length:10})
+    tipo:string
 }
