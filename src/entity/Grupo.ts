@@ -1,3 +1,4 @@
+import { IsNotEmpty } from "class-validator";
 import { Column,PrimaryGeneratedColumn,Entity,CreateDateColumn,UpdateDateColumn,Unique, OneToMany } from "typeorm";
 import { Producto } from "./Producto";
 
@@ -15,6 +16,10 @@ export class Grupo {
 
     @Column()
     descripcion:string;
+
+    @IsNotEmpty()
+    @Column()
+    idempresa: number;
 
     @Column()
     @CreateDateColumn()

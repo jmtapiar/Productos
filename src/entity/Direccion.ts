@@ -10,7 +10,7 @@ export class Direccion{
     id:number
     
     @ManyToOne(()=> Cliente, cliente => cliente.id)
-    idcliente:Cliente[];
+    cliente:Cliente[];
 
     @Column("nvarchar",{length:10})
     direccion:string

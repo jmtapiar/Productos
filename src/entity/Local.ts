@@ -13,7 +13,7 @@ export class Local{
     id:Kardex[];
 
     @ManyToOne(()=> Empresa, empresa => empresa.id)
-    idempresa:Empresa[];
+    empresa:Empresa[];
 
     @Column()
     nombre:string;

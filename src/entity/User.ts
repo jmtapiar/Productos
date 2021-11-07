@@ -17,6 +17,18 @@ export class User {
     username: string;
 
     @Column()
+    @MinLength(36)
+    nombre: string;
+
+    @Column()
+    @MinLength(36)
+    apellido: string;
+
+    @Column()
+    @MinLength(6)
+    profesion: string;
+
+    @Column()
     @MinLength(6)
     password: string;
 
@@ -36,7 +48,7 @@ export class User {
     movimiento:Movimiento[];
 
     @ManyToOne(()=> Empresa, empresa=> empresa.id)
-    idempresa:Empresa[];
+    empresa:Empresa[];
 
     @Column({default:1})
     estado:boolean;

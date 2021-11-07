@@ -11,10 +11,10 @@ export class Empresa {
     id:number
 
     @OneToMany (()=> User, user => user.id)
-    idusuario:User[];
+    usuario:User[];
 
     @OneToMany(()=> Local, local => local.id )
-    idlocal:Local[];
+    local:Local[];
 
     @Column("nvarchar",{length:13})
     identificacion:string;

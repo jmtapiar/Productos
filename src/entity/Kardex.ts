@@ -1,3 +1,4 @@
+import { IsNotEmpty } from "class-validator";
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
 import { Local } from "./Local";
 import { Producto } from "./Producto";
@@ -26,9 +27,11 @@ export class Kardex {
     @UpdateDateColumn()
     updatedDate:Date;
 
-    @Column({
-        nullable:true
-    })
+    @Column()
     iduser :number
+
+    @IsNotEmpty()
+    @Column()
+    idempresa: number;
 
 }

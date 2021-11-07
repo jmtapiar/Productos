@@ -39,7 +39,7 @@ class AuthController {
             })
         }
         
-        const usuario = jwt.sign({userId:user.id, username:user.username,role:user.role},config.jwtSecret,{ expiresIn:'1h' })
+        const usuario = jwt.sign({userId:user.id, username:user.username,role:user.role, empresaid:user.empresa },config.jwtSecret,{ expiresIn:'1h' })
         res.status(200).json({
             message: 'Correcto',
             data: usuario,
