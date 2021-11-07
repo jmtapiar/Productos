@@ -11,7 +11,7 @@ export function crypt(origin: string, key: string): string {
   }
 }
 
-export function cryptObj(origin: string, key: string): string {
+export function cryptObj(origin: any): any {
   try {
     return CryptoJS.AES.encrypt(stringify(origin), crytopconfig.default.key, { iv: crytopconfig.default.iv }).toString();
   }
@@ -20,7 +20,7 @@ export function cryptObj(origin: string, key: string): string {
   }
 }
 
-export function decrypt(origin: string): string {
+export function decrypt(origin: any): string {
   try {
     if (origin != null && origin.length > 0) {
       var decrypt = CryptoJS.AES.decrypt(origin, crytopconfig.default.key, { iv: crytopconfig.default.iv });
@@ -38,7 +38,7 @@ export function decryptObj(origin: string): string {
   try {
     if (origin != null && origin.length > 0) {
       var bytes  = CryptoJS.AES.decrypt(origin,  crytopconfig.default.key, { iv: crytopconfig.default.iv });
-      var decrypt = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      var decrypt = JSON.parse(bytes);
       return decrypt
     }
     return "";

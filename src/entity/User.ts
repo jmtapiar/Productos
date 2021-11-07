@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Unique, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Unique, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne } from "typeorm";
 import { MinLength,IsNotEmpty, minLength } from "class-validator";
 import { Movimiento } from "./Movimiento";
 import * as bcrypt from "bcrypt";
+import { Empresa } from "./Empresa";
 
 
 @Entity("User")
@@ -33,6 +34,9 @@ export class User {
 
     @OneToMany(()=>Movimiento, movimiento => movimiento.id)
     movimiento:Movimiento[];
+
+    @ManyToOne(()=> Empresa, empresa=> empresa.id)
+    idempresa:Empresa[];
 
     @Column({default:1})
     estado:boolean;

@@ -26,4 +26,9 @@ export class Kardex {
     @UpdateDateColumn()
     updatedDate:Date;
 
+    @Column({
+        nullable:true
+    })
+    iduser :number
+
 }

@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Unique, OneToMany} from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Unique, OneToMany, ManyToOne} from "typeorm";
 import { Kardex } from "./Kardex";
+import { Empresa } from "./Empresa";
 
 
 @Entity()
@@ -10,6 +11,9 @@ export class Local{
     @PrimaryGeneratedColumn()
     @OneToMany(()=>Kardex, kardex => kardex.id)
     id:Kardex[];
+
+    @ManyToOne(()=> Empresa, empresa => empresa.id)
+    idempresa:Empresa[];
 
     @Column()
     nombre:string;

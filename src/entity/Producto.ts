@@ -1,22 +1,29 @@
 import { IsNotEmpty } from "class-validator";
-import { Entity, PrimaryGeneratedColumn, Unique,Column,CreateDateColumn,UpdateDateColumn, Double, OneToMany, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Unique,Column,CreateDateColumn,UpdateDateColumn, ManyToOne, IsNull } from "typeorm";
 import { Grupo } from "./Grupo";
 
 
 @Entity()
-@Unique(['nombre','estado'])
+@Unique(['nombre','idproveedor','estado'])
 
 export class Producto{
 
     @PrimaryGeneratedColumn()
     id: number;
-
-    
+   
     @ManyToOne(()=>Grupo , grupo => grupo.id)
     grupo:Grupo;
+
+    @Column("nvarchar",{length:20})
+    codigo:string
     
     @Column()
     nombre: string;
+
+    @Column({
+        nullable: true
+    })
+    idproveedor: number;
 
     @Column()
     descripcion: string

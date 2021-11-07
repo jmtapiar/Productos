@@ -2,7 +2,6 @@ import { createQueryBuilder, getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { Grupo } from "../entity/Grupo";
 import { validate } from "class-validator";
-
 export class GrupoController {
 
     static getall = async (req: Request, res: Response) => {
