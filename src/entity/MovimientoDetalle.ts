@@ -3,7 +3,7 @@ import { Movimiento } from "./Movimiento";
 import { Producto } from "./Producto";
 
 @Entity()
-@Unique(['productoid, id'])
+@Unique(['producto', 'id'])
 
 export class movimientoDetalle{
 

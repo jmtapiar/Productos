@@ -47,11 +47,13 @@ export class User {
     @OneToMany(()=>Movimiento, movimiento => movimiento.id)
     movimiento:Movimiento[];
 
+    
     @ManyToOne(()=> Empresa, empresa=> empresa.id)
-    empresa:Empresa[];
+    empresa:Empresa;
 
     @Column({default:1})
     estado:boolean;
+    
 
     hashPassword(): void {
         const salt = bcrypt.genSaltSync(10);

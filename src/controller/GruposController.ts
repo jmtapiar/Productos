@@ -6,9 +6,10 @@ export class GrupoController {
 
     static getall = async (req: Request, res: Response) => {
         try {
-            const grupoRepository = getRepository(Grupo);
+            const {idempresa} = req.body;
             const grupo = await createQueryBuilder(Grupo, "grupo")
-            .where("grupo.estado = :estado", { estado: "1" })
+            .where("grupo.estado = :estado", { estado: 1 })
+            .andWhere("grupo.idempresa = :idempresa", { idempresa: idempresa })
             .getMany()
             if (grupo.length > 0) {
                 res.send({

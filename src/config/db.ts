@@ -10,7 +10,7 @@ const DatabaseConfig = () => ({
         "dist/entity/*{.ts,.js}",
         "src/entity/*{.ts,.js}"
     ],
-    synchronize: true,
+    synchronize: false,
     logging:true,
     migrationsTableName: 'migrations', // this field will be used to create the table by name of migrations. You can name it whatever you want. But make sure to use the sensible name
     migrations: [

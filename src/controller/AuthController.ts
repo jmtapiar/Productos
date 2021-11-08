@@ -1,9 +1,10 @@
-import { getRepository } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { User } from "../entity/User";
 import * as jwt from "jsonwebtoken";
 import config  from "../config/jwt";
 import * as crypto from "./aescrypto";
+import { Empresa } from "../entity/Empresa";
 
 
 
@@ -21,10 +22,20 @@ class AuthController {
             })
         }
         const userRepository = getRepository(User);
+
         let user: User;
+        let userB:any
+        let empresaid:number
 
         try {
-            user = await userRepository.findOneOrFail({ where: { username: usuarioDe } })
+            user = await userRepository
+            .createQueryBuilder("user")
+            .leftJoinAndSelect("user.empresa", "empresa")
+            .where("user.username = :name", { name: usuarioDe })
+            .getOne();
+            empresaid = user.empresa.id;
+            //user = await userRepository.findOneOrFail({ where: { username: usuarioDe } })
+
         } catch (error) {
             return res.status(400).json({
                 message: ' Username Or Password incorrectos! ',
@@ -32,14 +43,15 @@ class AuthController {
             })
 
         }
-
+        
         if( !user.checkPassword(passwordDe)){
             return res.status(400).json({
                 message:'Username Or Password incorrectos! '
             })
         }
         
-        const usuario = jwt.sign({userId:user.id, username:user.username,role:user.role, empresaid:user.empresa },config.jwtSecret,{ expiresIn:'1h' })
+        const usuario = jwt.sign({userId:user.id, username:user.username,role:user.role,idempresa: empresaid },config.jwtSecret,{ expiresIn:'1h' })
+        
         res.status(200).json({
             message: 'Correcto',
             data: usuario,
