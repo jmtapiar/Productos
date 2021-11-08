@@ -8,6 +8,8 @@ router.get('/',checkRole(['usuario']),GrupoController.getall);
 
 router.get('/:id',checkRole(['usuario']),GrupoController.getById);
 
+router.get('/emp/:id',checkRole(['usuario']),GrupoController.getByEmp);
+
 router.post('',checkRole(['usuario']),GrupoController.newGrupo);
 
 router.put('/:id',checkRole(['usuario']),GrupoController.editGrupo);

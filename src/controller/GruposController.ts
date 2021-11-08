@@ -32,7 +32,23 @@ export class GrupoController {
         const { id } = req.params;
         const grupoRepository = getRepository(Grupo);
         try {
-            const grupo = grupoRepository.findOneOrFail({ where: { estado: true, id } });
+            const grupo = await grupoRepository.findOneOrFail({ where: { estado: true, id } });
+            res.send({
+                message: 'Correcto',
+                data: grupo
+            })
+        } catch (error) {
+            res.status(404).json({
+                message: 'No existe grupo'
+            })
+        }
+    }
+
+    static getByEmp = async (req: Request, res: Response) => {
+        const { id } = req.params;
+        const grupoRepository = getRepository(Grupo);
+        try {
+            const grupo = await grupoRepository.findOneOrFail({ where: { estado: true, idempresa:id } });
             res.send({
                 message: 'Correcto',
                 data: grupo
