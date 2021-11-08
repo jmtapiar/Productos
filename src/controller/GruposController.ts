@@ -6,7 +6,7 @@ export class GrupoController {
 
     static getall = async (req: Request, res: Response) => {
         try {
-            const {idempresa} = req.body;
+            const {idempresa} = req.params;
             const grupo = await createQueryBuilder(Grupo, "grupo")
             .where("grupo.estado = :estado", { estado: 1 })
             .andWhere("grupo.idempresa = :idempresa", { idempresa: idempresa })
