@@ -36,7 +36,7 @@ export class GrupoController {
 
         const grupoRepository = getRepository(Grupo);
         try {
-            const grupo = await grupoRepository.findOneOrFail({ where: { estado: true, id, idempresa: idempresaD } });
+            const grupo = await grupoRepository.findOneOrFail({ where: { estado: true, id, idempresa: idEmpresaD } });
             res.send({
                 message: 'Correcto',
                 data: grupo
