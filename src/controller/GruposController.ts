@@ -33,7 +33,6 @@ export class GrupoController {
         const { id } = req.params;
         const { idempresa } = req.body;
         idEmpresaD = Number(decrypt(idempresa))
-
         const grupoRepository = getRepository(Grupo);
         try {
             const grupo = await grupoRepository.findOneOrFail({ where: { estado: true, id, idempresa: idEmpresaD } });
