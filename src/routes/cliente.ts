@@ -4,6 +4,6 @@ import { checkRole } from "../middleware/role";
 
 const router = Router();
 
-router.post('/emp/',checkRole(['usuario','admin']),ClientesController.getall);
+router.post('/emp/',checkRole(['usuario']),ClientesController.getall);
 
 export default router;
