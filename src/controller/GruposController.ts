@@ -20,7 +20,6 @@ export class GrupoController {
             } else {
                 res.status(404).json({ message: 'No existe grupo!' })
             }
-
         } catch (error) {
             res.status(404).json({
                 message: 'Error',

@@ -5,6 +5,7 @@ import user from "./user";
 import producto from "./Producto";
 import grupo from "./grupo";
 import local from "./local";
+import cliente from "./cliente";
 
 
 const router = Router();
@@ -14,6 +15,7 @@ router.use('/auth',auth);
 router.use('/producto',checkJwt,producto);
 router.use('/grupo',checkJwt,grupo);
 router.use('/local',checkJwt,local);
+router.use('/cliente',checkJwt,cliente);
 
 
 export default router;
