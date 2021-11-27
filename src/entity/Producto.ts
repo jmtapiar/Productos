@@ -49,5 +49,9 @@ export class Producto{
     @Column({ default: 1 })
     estado:boolean;
 
+    @IsNotEmpty()
+    @Column()
+    idempresa: number;
+
 
 }

@@ -22,7 +22,7 @@ export function cryptObj(origin: any): any {
 
 export function decrypt(origin: any): string {
   try {
-    if (origin != null && origin.length > 0) {
+    if (origin != undefined) {
       var decrypt = CryptoJS.AES.decrypt(origin, crytopconfig.default.key, { iv: crytopconfig.default.iv });
       return decrypt.toString(CryptoJS.enc.Utf8)
     }

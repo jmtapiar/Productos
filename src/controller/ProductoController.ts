@@ -3,7 +3,10 @@ import { Request, Response } from "express";
 import { Producto } from "../entity/Producto";
 import { Grupo } from "../entity/Grupo";
 import { validate } from "class-validator";
+import { decrypt } from "./aescrypto";
 
+
+let idEmpresaD:number;
 export class ProductosController {
 
     
@@ -30,6 +33,31 @@ export class ProductosController {
         }
     }
 
+    static getallEmp = async (req:Request,res:Response)=>{
+        try {
+            let {idempresa} = req.body;
+            idEmpresaD = Number(decrypt(idempresa));
+            const producto = await createQueryBuilder(Producto,"producto")
+                .where("producto.estado= :estado",{estado:1})
+                .andWhere("producto.idempresa = :idempresa", {idempresa:idEmpresaD})
+                .getMany()
+            if(producto.length >0){
+                res.send({
+                    message: 'Correcto',
+                    data:producto
+                })
+            }else {
+                res.status(404).json({message: 'No existe cliente!'})
+            }
+        } catch (error) {
+            res.status(404).json({
+                message: 'Error',
+                data: error
+            })
+            
+        }
+    }
+    
     static getById = async(req:Request, res:Response )=>{
             const {id}= req.params;
             const prodRepository = getRepository(Producto);
