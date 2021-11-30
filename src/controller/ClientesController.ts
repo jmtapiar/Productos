@@ -96,10 +96,10 @@ export class ClientesController {
 
     static newCliente = async(req:Request, res:Response)=> {
         
-        const cliente = req.body;
-        let cli=cliente;
-        //idEmpresaD=Number(decrypt(cliente.idempresa));
-        const errores = await validate(cliente);
+        const {idempresa}= req.body;  
+        var cli= req.body;
+        cli.idempresa = Number (decrypt(idempresa));
+        const errores = await validate(cli);
         if (errores.length > 0) {
               return res.status(404).json({
                   message: 'Error no cumple Validaciones!',
@@ -107,13 +107,9 @@ export class ClientesController {
               })
           }
           const   clienteRepository = getRepository(Cliente);
-         
-          cli.idempresa = 0;
-        
+          
         try {
-            
             await clienteRepository.save(cli);
-
         } catch (error) {
             res.status(404).json({
                 message: 'Error',
