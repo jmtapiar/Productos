@@ -15,7 +15,7 @@ router.post('/emp/',checkRole(['usuario']), ProductosController.getallEmp);
 router.get('/:id',checkRole(['usuario']),ProductosController.getById);
 
 //TODO: Crear nuevo usuario
-router.post('/',checkRole(['usuario']),ProductosController.newProd);
+router.post('',checkRole(['usuario']),ProductosController.newProd);
 
 //TODO: Editar Usuario
 router.put('/:id',checkRole(['usuario']),ProductosController.editProd);
