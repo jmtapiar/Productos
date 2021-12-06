@@ -39,7 +39,7 @@ export class ProductosController {
             idEmpresaD = Number(decrypt(idempresa));
             const producto = await createQueryBuilder(Producto,"producto")
                 .where("producto.estado= :estado",{estado:1})
-                .andWhere("producto.idempresa = :idempresa", {idempresa:idEmpresaD})
+                .andWhere("producto.idempresa = :idem", {idem:idEmpresaD})
                 .getMany()
             if(producto.length >0){
                 res.send({
@@ -78,10 +78,10 @@ export class ProductosController {
     }
 
     static newProd = async(req:Request, res:Response)=> {
-
-        const producto = req.body;
-        
-        const errores = await validate(producto);
+        const {idempresa} = req.body;
+        var pro= req.body;
+        pro.idempresa = Number (decrypt(idempresa));
+        const errores = await validate(pro);
         if(errores.length>0){
             return res.status(404).json({
                 message:'Error no cumple Validaciones!',
@@ -92,7 +92,7 @@ export class ProductosController {
         const prodRepository=getRepository(Producto);
 
         try {
-            await prodRepository.save(producto);
+            await prodRepository.save(pro);
         } catch (error) {
             res.status(404).json({
                 message:'No se pudo crear el producto!',
