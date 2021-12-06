@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator";
-import { Column, PrimaryGeneratedColumn, CreateDateColumn,UpdateDateColumn,Unique,Entity,OneToMany, ManyToOne } from "typeorm";
+import { Column, PrimaryGeneratedColumn, CreateDateColumn,UpdateDateColumn,Unique,Entity,OneToMany, ManyToOne, Timestamp } from "typeorm";
 import { tipoIdentificacion } from "./tipoIdentificacion";
 
 @Entity()
@@ -38,7 +38,7 @@ export class Cliente {
     @Column({nullable:true})
     estadocivil:string
 
-    @Column({ default: 1 })
+    @Column({ default: true })
     estado:boolean;
     
     @Column()
@@ -48,11 +48,5 @@ export class Cliente {
     @Column()
     @UpdateDateColumn()
     updatedAt: Date;
-
-
-    
-
-
-
 
 }

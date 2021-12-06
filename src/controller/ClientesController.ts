@@ -37,6 +37,7 @@ export class ClientesController {
             let {idemp} = req.body;
             idEmpresaD = Number(decrypt(idemp));
             const cliente = await createQueryBuilder(Cliente,"cliente")
+                .leftJoinAndSelect("cliente.tipoidentificacion","tipoidentificacion")
                 .where("cliente.estado= :estado",{estado:1})
                 .andWhere("cliente.idempresa = :idempresa", {idempresa:idEmpresaD})
                 .getMany()
@@ -94,11 +95,12 @@ export class ClientesController {
         }
     }
 
-    static newCliente = async(req:Request, res:Response)=> {
+    static newCliente = async (req:Request, res:Response) => {
         
-        const {idempresa}= req.body;  
-        var cli= req.body;
-        cli.idempresa = Number (decrypt(idempresa));
+        //const {tipoidentificacion,identificacion,nombre,apellido,fnacimiento,
+          //  genero,idempresa,tipo,estadocivil}= req.body;  
+        var cli=req.body;
+        cli.idempresa = Number (decrypt(cli.idempresa));
         const errores = await validate(cli);
         if (errores.length > 0) {
               return res.status(404).json({
@@ -119,7 +121,49 @@ export class ClientesController {
         res.send({ message: 'Correcto' })
     }
     
+    static editCliente = async (req:Request, res:Response) =>{
+        let c;
+        const {id} = req.params;
+        const {tipoidentificacion,identificacion,nombre,apellido,fnacimiento,
+            genero,tipo,estadocivil} = req.body;
+        const clienteRepository = getRepository(Cliente);
+        try {
+            c = await clienteRepository.findOneOrFail({where:{id}})
+        } catch (error) {
+            res.status(404).json({
+                message: 'Error no existe Grupo!',
+                data: error
+            })
+        }
+        c.tipoidentificacion = tipoidentificacion;
+        c.identificacion = identificacion;
+        c.nombre = nombre;
+        c.apellido = apellido;
+        c.fnacimiento = fnacimiento;
+        c.genero = genero;
+        c.tipo = tipo;
+        c.estadocivil = estadocivil;
 
+        const errores = await validate(c);
+        if(errores.length>0){
+            return res.status(404).json({
+                message: 'Error no cumple las validaciones!',
+                data: errores.toString()
+            })
+        }
+        
+
+        try {
+            await clienteRepository.update(id,c);
+        } catch (error) {
+            return res.status(404).json({
+                message: 'Error',
+                data: error
+            })
+        }
+        res.send({ message: 'Cliente Modificado' })
+
+    }
 
 
 }
