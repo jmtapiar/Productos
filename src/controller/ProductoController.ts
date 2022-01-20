@@ -78,9 +78,9 @@ export class ProductosController {
     }
 
     static newProd = async(req:Request, res:Response)=> {
-        const {idempresa} = req.body;
+       //const {idempresa} = req.body;
         var pro= req.body;
-        pro.idempresa = Number (decrypt(idempresa));
+        pro.idempresa = Number (decrypt(pro.idempresa));
         const errores = await validate(pro);
         if(errores.length>0){
             return res.status(404).json({
