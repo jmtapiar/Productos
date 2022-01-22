@@ -143,7 +143,6 @@ export class ClientesController {
         c.genero = genero;
         c.tipo = tipo;
         c.estadocivil = estadocivil;
-
         const errores = await validate(c);
         if(errores.length>0){
             return res.status(404).json({
@@ -151,8 +150,6 @@ export class ClientesController {
                 data: errores.toString()
             })
         }
-        
-
         try {
             await clienteRepository.update(id,c);
         } catch (error) {
@@ -165,5 +162,22 @@ export class ClientesController {
 
     }
 
+    static delCliente = async(req:Request, res:Response)=>{
+        const {id} = req.params;
+        const clienteRepository = getRepository(Cliente);
+        let cli:Cliente;
+        try {
+            cli = await clienteRepository.findOneOrFail(id);
+        } catch (error) {
+            return res.status(404).json({
+                message: 'Error',
+                data:error
+            })
+        }
+        clienteRepository.update(id,{estado:false});
+        res.send({
+            message: 'Eliminado'
+        })
+    }
 
 }
