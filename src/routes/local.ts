@@ -4,7 +4,7 @@ import { checkRole } from "../middleware/role";
 
 const router = Router();
 
-router.get('/',checkRole(['usuario']),LocalController.getall);
+router.post('/',checkRole(['usuario']),LocalController.getall);
 
 router.get('/:id',checkRole(['usuario']),LocalController.getById);
 

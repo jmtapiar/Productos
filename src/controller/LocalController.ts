@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository,createQueryBuilder } from "typeorm";
 import { Request, Response } from "express";
 import { Local } from "../entity/Local";
 import { validate } from "class-validator";
@@ -9,7 +9,10 @@ export class LocalController {
     static getall =async (req:Request, res:Response)=>{
         try {
             const localRepository =getRepository(Local);
-            const local = await localRepository.findAndCount({where :{estado:1}});
+            const local = await createQueryBuilder(Local, "local")
+
+            .where("local.estado = :estado", { estado: "1" })
+            .getMany()
             if(local.length>0){
                 res.send({
                     message:'Correcto',
