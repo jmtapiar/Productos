@@ -6,6 +6,7 @@ import producto from "./Producto";
 import grupo from "./grupo";
 import local from "./local";
 import cliente from "./cliente";
+import empresa from "./empresa"
 
 
 const router = Router();
@@ -16,6 +17,7 @@ router.use('/producto',checkJwt,producto);
 router.use('/grupo',checkJwt,grupo);
 router.use('/local',checkJwt,local);
 router.use('/cliente',checkJwt,cliente);
+router.use('/empresa',checkJwt,empresa);
 
 
 export default router;
