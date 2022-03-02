@@ -62,31 +62,6 @@ export class EmpresaController {
         }
     }
 
-    static getByEmp = async (req:Request,res:Response)=>{
-        try {
-            let {idempresa} = req.body;
-            idEmpresaD = Number(decrypt(idempresa));
-            const empresa = await createQueryBuilder(Empresa,"empresa")
-                .where("empresa.estado= :estado",{estado:1})
-                .andWhere("empresa.id = :id", {id:idEmpresaD})
-                .getMany()
-            if(empresa.length >0){
-                res.send({
-                    message: 'Correcto',
-                    data:empresa
-                })
-            }else {
-                res.status(404).json({message: 'No existe cliente!'})
-            }
-        } catch (error) {
-            res.status(404).json({
-                message: 'Error',
-                data: error
-            })
-            
-        }
-    }
-
     static newEmpresa = async (req: Request, res: Response) => {
         const empresa = req.body;
 
