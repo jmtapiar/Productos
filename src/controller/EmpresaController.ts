@@ -50,7 +50,7 @@ export class EmpresaController {
         idEmpresaD = Number(decrypt(idempresa));
         const empresaRepository = getRepository(Empresa);
         try {
-            const empresa = await empresaRepository.find({ where: { estado: 1, idempresa: idEmpresaD } });
+            const empresa = await empresaRepository.find({ where: { estado: 1, id: idEmpresaD } });
             res.send({
                 message: 'Correcto',
                 data: empresa
