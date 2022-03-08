@@ -13,8 +13,8 @@ export class Empresa {
     @OneToMany (()=> User, user => user.id)
     usuario:User[];
 
-    @OneToMany(()=> Local, local => local.id )
-    local:Local[];
+  //  @OneToMany(()=> Local, local => local.id )
+   // local:Local[];
 
     @Column("nvarchar",{length:13})
     identificacion:string;

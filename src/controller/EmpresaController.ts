@@ -76,10 +76,10 @@ export class EmpresaController {
         const empresaRepository = getRepository(Empresa);
 
         try {
-            let empresaD: Empresa;
-            empresaD.id = Number(decrypt(empresaD.id));
+           // let empresaD: Empresa;
+            // empresaD.id = Number(decrypt(empresaD.id));
 
-            await empresaRepository.save(empresaD);
+            await empresaRepository.save(empresa);
         } catch (error) {
             res.status(404).json({
                 message: 'Error',
@@ -89,10 +89,11 @@ export class EmpresaController {
         }
         res.send({ message: 'Correcto' })
     }
+
     static editEmpresa = async (req: Request, res: Response) => {
         let g;
         const { id } = req.params;
-        const { identificacion, nombre, direccion, telefono , tipo } = req.body;
+        const { identificacion, nombre, direccion, telefono, tipo } = req.body;
         const empresaRepository = getRepository(Empresa);
         try {
             g = await empresaRepository.findOneOrFail({ where: { id: id } });
@@ -102,11 +103,11 @@ export class EmpresaController {
                 data: error
             })
         }
-        g.identificacion = identificacion; 
+        g.identificacion = identificacion;
         g.nombre = nombre;
-        g.direccion=direccion;
-        g.telefono=telefono;
-        g.tipo=tipo;
+        g.direccion = direccion;
+        g.telefono = telefono;
+        g.tipo = tipo;
         const errores = await validate(g);
         if (errores.length > 0) {
             return res.status(404).json({
@@ -125,14 +126,14 @@ export class EmpresaController {
         }
         res.send({ message: 'Empresa Modificado' })
     }
-    static delEmpresa= async (req: Request, res: Response) => {
+    static delEmpresa = async (req: Request, res: Response) => {
         const { id } = req.params;
         const { idempresa } = req.body;
         const empresaRepository = getRepository(Empresa);
         let g: Empresa;
 
         try {
-            g = await empresaRepository.findOneOrFail({ where: { id: id} });
+            g = await empresaRepository.findOneOrFail({ where: { id: id } });
         } catch (error) {
             return res.status(404).json({
                 message: 'Error',
